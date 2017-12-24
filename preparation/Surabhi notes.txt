@@ -1,0 +1,200 @@
+directive
+<%@.......%>
+
+scripting elements <%.....%>
+
+types of directives
+1 - include
+2 - page
+3 - taglib
+
+attributes of page directive
+
+life cycle of servlet
+1 - 
+
+
+
+
+
+**********************************************************
+LESSON 4 - CLASSES AND OBJECTS
+
+
+points to remember:
+- classes dont exist in real world. classes are logical. classes provide blueprint from which objects are created.
+- what exist in real owrld are called objects. when we classify objects on the basis of commonality of structure and behaviour, the result we get are classes.
+- a class can have 0 or more members (fields and methods)
+- getters/setters are used to access private members of a class
+
+Constructors:
+- constructors are special methods that have the same name as the class name
+- have no return type
+- a class must have at least 1 constructor
+- when a class does not declare a constructor, a default constructor is provided by the compiler. this default constructor accepts no arguments.
+- structure of constructor is similar to a method
+- constructors are used to create objects of a class
+- constructors can only call methods that are static, final or private.
+- they should not call overridables
+
+**********************************************************
+Benefits of using packages:
+1- source code of one program does not conflict with source codes of other programs
+	- packages are nothing but namespaces defined in java. developers can keep thgeir codes in different namespaces in order to avoid conflict. these namespaces are called packages.
+2- provides greater control over source code, i.e. when building large applications, there can be 100 source codes. in that case, it becomes difficult to manage the files. Hence, we can group programs and place related classes in one package. eg: interface classes can be placed in one package.
+3- it is easy to find a class if you know the functionality it provides. eg: all DTO classes are found in DTO package
+
+-> you can use import statements to import classes from other packages.
+-> static import imports only static memebers of a class
+
+
+
+*************************************************************
+INTRODUCTION TO WEB SERVICES
+
+what is web service?
+ANS: web service is a method of communication(language independent) between 2 devices over a network
+	web services can go through firewalls
+	are avaialble anywhere, anytime and on any device
+
+
+TYPES OF WEB SERVICES
+1- SOAP web services
+2- RESTful web services - Representational State TRansfer
+
+COMPONENTS OF WEB SERVICES
+1 - SOAP (Simpe Object Access Protocol)
+	-> XML-based protocol for accesisng web services
+	-> since it is XML-based, it is platform independent and language independent
+	-> built on W3C standard
+
+2 - WSDL (Web Services Description Language)
+	->XML document containing information about web services such as method name, method parameter and how to access it
+	-> WSDL defines how incoming information(queries) need to be structured for the service application to make sense of it; and how outgoing data will be structured so that the requesting application can understand it.
+	-> WSDL is a part of UDDI.
+	-> acts as an interface between web service applications
+
+3 - UDDI (Universal Description, Discovery and Integration)
+	->is a directory of web service interfaces described by WSDL, containinginformation about web services.
+
+ELEMENTS IN WSDL FILE
+<types> : defines the datatypes used by the web service
+<types>data type definition </types>
+
+<message>: defines data elements for each operation
+<message>definition of data being communicated</message>
+
+<portType>: describes operations that can be performed and messages involved
+<portType>set of operations</portType>
+
+<binding>: defines protocol and data format for each port type
+<binding>protocol and data format specification</binding>
+
+SOAP BUILDING BLOCKS
+-> Envelope : identifies XML document as a SOAP message
+-> Header : contains header information
+-> Body : contains call and response information
+
+3 MAJOR ROLES WITHIN WEB SERVICE ARCHITECTURE
+1 - Service Provider(Web service)
+	implements the service and makes it available on the Internet 
+
+2 - Service Requestor(Service client)
+	this is a consumer of the web service
+	the requestor utilizes an existing web service by opening a network connection and sending a XML request
+
+3 - Service Registry
+	logically centralized directory of services
+	a central place where developers can publish new services or find existing ones
+
+REST is an architectural style that specifies constraints such as uniform interface.
+In the REST architecture style, clients and servers exchange representations of resources by using a standardized interface like URIs(Uniform Resource Identifiers)
+
+
+REST ANNOTATIONS
+1 - @Path: @Path annotation's value is a relative URI path indicating where the Java class will be hosted, eg: /helloworld
+
+2- @GET: java method annotated with @GET will process HTTP GET requests 
+
+3- @POST: java method annotated with @POST will process HTTP POST requests
+
+4- @PUT: java method annotated with @PUT will process HTTP PUT requests
+
+5- @DELETE: java method annotated with @DELETE will process HTTP DELETE requests
+
+6- @FORMPARAM: to bind HTML form parameters to a Java method
+
+7- @Consumes: used to specify MIME media types of representations a resource can consume that were sent by the client
+
+8- @Produces: used to specify MIME media types of representations a resource can produce and send back to the client
+
+9- @PathParam: is a type of parameter that you can extract for use in your resource class
+
+
+
+*** WebService annotation defines the class as a web service endpoint
+*** SEI (Service Endpoint Interface) is a Java interface that declares the methods that a client can invoke on the service     
+
+Difference between SOAP and REST
+
+
+
+
+
+*************************************************************************
+********************JPA (JAVA PERSISTENCE API)***************************
+
+what is JPA?
+-> JPA is a collection of classes and methods to persistently store the avst amounts of data into a database which is provided by the Oracle Corporation
+-> JPA is a source to store business entities as relational entities. It shows how to define a POJO (Plain Old Java Object) as an entity and how to manage entities and relations.
+
+
+O/RM (OBJECT RELATIONAL MAPPER)
+-> An O/RM persists entitites in and retrieves entities from relational databases without the programmer having to write SQL statements and translate entity properties to statement parametere and result set columns to entity properties.
+
+What ORM consists of??
+1) An API to perform CRUD(Create Read Update Delete) operations
+2) A languagae to specify queries that refer to classes and properties of classes
+3) A facility, to specify mapping metadata
+4) A technique, to perform dirty checking, lazy association fetching etc.
+
+what is dirty checking?
+-> avoid unnecessary database write actions by performing SQL updates only on modified fields of persistent objects.
+eg: if salary of employee has been updated, only salary field will be pdated instead of entire object 
+
+what is lazy association fetching??
+-> lazy eftching edcides whether to load child objects while loading parent object.
+eg: consider department has many employees, department is parent object and empoyee is child object, if a user writes query to fetch department details, only department object will be loaded.
+
+Object-Relation Impedence mismatch
+- granularity
+- subtypes(inheritance)
+- identity
+- association 
+
+***JPA is not a product and can't be used as it is for persistence.
+***It needs an ORM implementation to work an persist the Java objects.
+***ORM frameworks that can be used with JPA are Hibernate, Toplink, Open JPA etc..
+
+
+CORE CLASSES OF JPA:
+1. EntityManagerFactory: primary interface used by application developers to interact with the JPA runtime
+			 it is a factory class to EntityManager instances.
+			 
+2. EntityTransaction: this is factory class of EntityManager
+		      creates and manages multiple EntityManager instances.
+	
+3. Persistence: contains static methods to obtain EntityManagerFactory instance.
+		it defines a scope under which particular entity instances are created, persisted and removed.
+		Every EntityManager manages its own persistence context. In short, persistence context is a memory area for EntityManager to work on entity instance
+
+INTERFACES OF JPA
+1. EntityManager: manages persistence operations on objects.
+		  works like factory for query instance.
+2. Query: this interface is implemented by each JPA vendor to obtain relational objects that meet the criteria.
+
+PERSISTENCE LIFE CYCLE PHASES:
+1. new/transient state
+2. managed state
+3. detached state
+4. removed state
